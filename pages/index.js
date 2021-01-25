@@ -12,6 +12,19 @@ import GitHubCorner from '../src/components/GitHubCorner';
   background-size: cover;
 `;*/
 
+const Input = styled.input`
+  display: flex;
+  width: 80%;
+  padding: 7px;
+  border-radius: 10px;
+  border-style: none;
+  background-color: #303138;
+  border: 2px solid ${({ theme }) => theme.colors.primary};
+  &:focus{
+    outline: none;
+  }
+`;
+
 export const QuizContainer = styled.div`
   width: 100%;
   max-width: 350px;
@@ -29,16 +42,22 @@ export default function Home() {
       <QuizContainer>
         <Widget>
           <Widget.Header>
-            Questionário super Mega Dificil
+            Você conhece sobre League of Legends?
           </Widget.Header>
           <Widget.Content>
-            <h1>League of Legends</h1>
-            <p>Morganinha meu main coisa mais gostosinha de jogar</p>
+            <p>Inisra seu nick e encotre players para jogar</p>
+            <Input placeholder="Digite seu Nick" color="#FFFFFF"/>
           </Widget.Content> 
         </Widget>
         
         <Widget>
-          Qualquer outro card
+          <Widget.Content>
+            <h1>Quizes de Outras pessoas</h1>
+            <p>1 - Quiz</p>
+            <p>2 - Quiz</p>
+            <p>3 - Quiz</p>
+            <p>4 - Quiz</p>
+          </Widget.Content>
         </Widget>
         <Footer />
       </QuizContainer>
