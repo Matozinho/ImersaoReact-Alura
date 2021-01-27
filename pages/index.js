@@ -1,29 +1,13 @@
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import db from '../db.json';
 import { Widget } from '../src/components/Widget';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
-
-
-/*const BackgroundImage = styled.div`
-  background-image: url(${db.bg});
-  flex: 1;
-  background-size: cover;
-`;*/
-
-const Input = styled.input`
-  display: flex;
-  width: 80%;
-  padding: 7px;
-  border-radius: 10px;
-  border-style: none;
-  background-color: #303138;
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  &:focus{
-    outline: none;
-  }
-`;
+import QuizLogo from '../src/components/QuizLogo';
 
 export const QuizContainer = styled.div`
   width: 100%;
@@ -37,19 +21,42 @@ export const QuizContainer = styled.div`
 `;
 
 export default function Home() {
+  const router = useRouter();
+  const [name, setName] = React.useState('');
+
   return (
-    <QuizBackground backgroundImage={db.bg} >
+    <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
+        <QuizLogo />
         <Widget>
           <Widget.Header>
-            Você conhece sobre League of Legends?
+            <h1>League of Legends</h1>
           </Widget.Header>
           <Widget.Content>
-            <p>Inisra seu nick e encotre players para jogar</p>
-            <Input placeholder="Digite seu Nick" color="#FFFFFF"/>
-          </Widget.Content> 
+            <p>Teste seus conhecimentos sobre a história dos personagens</p>
+            <form onSubmit={(infosEvento) => {
+              infosEvento.preventDefault();
+              router.push(`quiz?name=${name}`);
+              // router mandando pra pŕoxima pag
+            }}
+            >
+              <Widget.Input
+                onChange={(param) => setName(param.target.value)}
+                placeholder="Insira seu nome para jogar"
+                type="text"
+              />
+              <Widget.Button
+                type="submit"
+                disabled={name.length === 0}
+              >
+                Jogar
+                {' '}
+                {name}
+              </Widget.Button>
+            </form>
+          </Widget.Content>
         </Widget>
-        
+
         <Widget>
           <Widget.Content>
             <h1>Quizes de Outras pessoas</h1>
@@ -62,6 +69,6 @@ export default function Home() {
         <Footer />
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/Matozinho" />
-    </QuizBackground> 
-  )
+    </QuizBackground>
+  );
 }
