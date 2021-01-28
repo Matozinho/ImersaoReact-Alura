@@ -49,41 +49,20 @@ Widget.Content = styled.div`
   }
 `;
 
-Widget.Input = styled.input`
-  display: flex;
-  width: 100%;
-  padding: 10px;
-  margin: 20px 0;
-  border-radius: 10px;
-  border-style: none;
-  background-color: #303138;
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  &:focus{
-    outline: none;
-  }
-  color: white;
-`;
-
-Widget.Button = styled.button`
-  display: flex;
-  width: 100%;
-  padding: 7px;
-  margin-top: 20px;
-  border-radius: 10px;
-  border-style: none;
-  background-color: ${({ theme }) => theme.colors.secondary};
-  border: 2px solid ${({ theme }) => theme.colors.secondary};
-  transition: 0.5s;
-
+Widget.Topic = styled.a`
+  outline: 0;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.contrastText};
+  background-color: ${({ theme }) => `${theme.colors.primary}40`};
+  padding: 10px 15px;
+  margin-bottom: 8px;
   cursor: pointer;
-
-  font-size: 16px;
-  justify-content: center;
-  color: white;
-
-  &:disabled{
-    background-color: #303138;
-    border: 2px solid #303138;
-    cursor: auto;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  transition: .3s;
+  display: block;
+  
+  &:hover,
+  &:focus {
+    opacity: .5;
   }
 `;
